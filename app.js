@@ -67,10 +67,10 @@ function animateSlides() {
       .addTo(controller);
     //New Animation
     const pageTl = gsap.timeline();
-    let nextSlide = slides.length - 1 === index ? 'end' : slides[index + 1];
-    pageTl.fromTo(nextSlide, {y: '0%'}, {y: "50%"});
+    let nextSlide = slides.length - 1 === index ? "end" : slides[index + 1];
+    pageTl.fromTo(nextSlide, { y: "0%" }, { y: "50%" });
     pageTl.fromTo(slide, { opacity: 1, scale: 1 }, { opacity: 0, scale: 0.5 });
-    pageTl.fromTo(nextSlide, {y: '50%'}, {y: "0%"}, '-=0.5');
+    pageTl.fromTo(nextSlide, { y: "50%" }, { y: "0%" }, "-=0.5");
 
     //Create New Scene
     pageScene = new ScrollMagic.Scene({
@@ -82,12 +82,48 @@ function animateSlides() {
         colorStart: "white",
         colorTrigger: "white",
         name: "page",
-        indent: 200
+        indent: 200,
       })
-      .setPin(slide, {pushFollowers: false})
+      .setPin(slide, { pushFollowers: false })
       .setTween(pageTl)
       .addTo(controller);
   });
 }
+const mouse = document.querySelector(".cursor");
+const mouseTxt = mouse.querySelector("span");
+const burger = document.querySelector(".burger");
+
+function cursor(e) {
+  mouse.style.top = e.pageY + "px";
+  mouse.style.left = e.pageX + "px";
+}
+
+function activeCursor(e) {
+  const item = e.target;
+  if (item.id === "logo" || item.classList.contains("burger")) {
+    mouse.classList.add("nav-active");
+  } else {
+    mouse.classList.remove("nav-active");
+  }
+  if (item.classList.contains("explore")) {
+    mouse.classList.add("explore-active");
+    gsap.to('.title-swipe', 1, {y: '0%'})
+    mouseTxt.innerText = "Tap";
+  } else {
+    mouse.classList.remove("explore-active");
+    mouseTxt.innerText = "";
+    gsap.to('.title-swipe', 1, {y: '100%'})
+  }
+}
+function navToggle(e){
+  gsap.to('.line1', 0.5, {rotate: "45", y:5 , background: "balck"})
+  gsap.to('.line2', 0.5, {rotate: "-45", y:-5 , background: "black"})
+  gsap.to('.nav-bar', 1, {clipPath: 'circle(2500px at 100% -10%)'})
+}
+
+burger.addEventListener("click", navToggle)
+window.addEventListener("mousemove", cursor);
+window.addEventListener("mouseover", activeCursor);
+
 
 animateSlides();
