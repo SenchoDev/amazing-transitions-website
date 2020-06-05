@@ -9,6 +9,10 @@ body{
     background: #17181a;
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
+    position: relative;
+}
+main{
+  position: absolute;
 }
 
 #logo{
@@ -26,7 +30,8 @@ body{
     width: 80%;
     margin: auto;
     padding: 2rem 0;
-    z-index: 20;
+    position: relative;
+    z-index: 5;
     
 }
 
@@ -47,7 +52,6 @@ body{
     align-items: center;
     color: white;
     background: #17181a;
-    z-index: -50;
 }
 .hero-img{
     position: relative;
@@ -113,11 +117,10 @@ body{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    z-index: 2;
     opacity: 1;
     clip-path: circle(50px at 100% -10%);
     -webkit-clip-path: circle(50px at 100% -10%);
-    
+    z-index: 0
 }
 
 .burger{
@@ -169,7 +172,6 @@ body{
 .cursor.nav-active{
     background: rgb(86,124,228);
     transform: scale(3);
-    z-index: -5;
 }
 .cursor.explore-active{
     background: white;
@@ -209,4 +211,62 @@ body{
 
 .scrollmagic-pin-spacer{
     position: static !important;
+}
+
+body.hide{
+  overflow: hidden;
+}
+/* Other  pages */
+.fashion1,.fashion2,.fashion3{
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  margin: auto;
+  color: white;
+  margin-top: 5rem;
+  flex-wrap: wrap;
+  position: relative;
+}
+.fashion-img{
+  height: 80vh;
+  flex-basis: 30rem;
+}
+.fashion-text{
+  flex: 1;
+  position: relative;
+  flex-basis: 25rem;
+}
+.fashion-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.fashion-text h1{
+  font-size: 6rem;
+  padding: 5rem 0rem;
+}
+
+.fashion1 h1{
+  color: rgb(255,139,93);
+}
+.fashion3 h1{
+  color: rgb(86,124,228);
+}
+.fashion2 h1{
+  color: rgb(167,110,231);
+}
+.fashion-text p{
+  font-size: 2rem;
+  padding: 2rem 2rem 0rem 0rem;
+  margin-bottom: 10rem;
+}
+.fashion-nr{
+  font-size: 14rem;
+  position: absolute;
+  left: 40%;
+  bottom: 3%;
+  color: white;
+  opacity: 0.2;
 }
